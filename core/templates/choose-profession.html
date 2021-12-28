@@ -1,0 +1,109 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Sample Page {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}	
+
+	<!-- [ Main Content ] start -->
+	<div class="pcoded-main-container">
+		<div class="pcoded-content">
+			<!-- [ breadcrumb ] start -->
+			<div class="page-header">
+				<div class="page-block">
+					<div class="row align-items-center">
+						<div class="col-md-12">
+							<div class="page-header-title">
+								<h5 class="m-b-10">Professions</h5>
+							</div>
+						<nav aria-label="breadcrumb">
+							<ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'home'%}"><i class="feather icon-home"></i></a></li>
+
+                                    {% if fff %}
+									<li class="breadcrumb-item" aria-current="page"><a href="{% url 'data-iniziali' fff=fff %}">DATI INIZIALI</a></li>
+                                    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'tables' fff=fff %}">SINTESI CONTRATTO CLIENTE</a></li>
+                                    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'beneficiary' fff=fff %}">DETTAGLIO DEI BENEFICIARI</a></li>
+                                    {%endif%}
+									<li class="breadcrumb-item active"><a class="breadcrumb-item active" href="">INCARICHI PROFESSIONALI</a></li>
+                                </ul>
+						</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- [ breadcrumb ] end -->
+			<!-- [ Main Content ] start -->
+			<div class="row">
+				<!-- [ sample-page ] start -->
+				<div class="col-sm-12">
+					<div class="card">
+						<div class="card-header">
+							<h5>Choose A Profession</h5>
+						</div>
+						<div class="card-body">
+							{% if messages %}
+                            {% for message in messages %}
+                            <div class="alert {% if message.tags %}alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}{% endif %}" role="alert">{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button></div>
+                            {% endfor %}
+                        	{% endif %}
+							<select name="profession" id="profession">
+                                <option value="data-designer">DATI PROGETTISTA</option>
+                                <option value="data-security-coordinator-design">DATI COORDINATORE SICUREZZA IN FASE DI PROGETTAZIONE</option>
+                                <option value="data-security-coordinator-execution">DATI COORDINATORE SICUREZZA IN FASE DI ESECUZIONE</option>
+                                <option value="director-works">DATI DIRETTORE LAVORI</option>
+                                <option value="thermotechnical">DATI TERMOTECNICO</option>
+                                <option value="data-energy-expert">DATI ESPERTO ENERGETICO</option>
+                                <option value="data-responsible">DATI RESPONSABILE DEI LAVORI</option>
+                            </select>
+                            <select name="type" id="type">
+                                <option value="individual">PERSONA FISICA</option>
+                                <option value="legal">PERSONA GIURIDICA</option>
+                            </select>
+                            <button id="pro-submit">Invia</button>
+						</div>
+					</div>
+				</div>
+				<!-- [ sample-page ] end -->
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+						<div class="card">
+							<div class="card-header">
+								<h5>Tavolo di tutti i professionisti</h5>
+							</div>
+
+							<div class="card-body">
+
+									{%if prof_form%}
+									<table>
+									{{prof_form}}
+									</table>
+									{%else%}
+									<table>
+										<tr>
+										<td>NO DATA</td>
+										</tr>
+									</table>
+
+									{%endif%}
+
+							</div>
+						</div>
+				</div>
+			</div>
+			<!-- [ Main Content ] end -->
+		</div>
+	</div>
+	<!-- [ Main Content ] end -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script src="/static/assets/js/pages/profession.js"></script>
+{% endblock javascripts %}

@@ -1,0 +1,189 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Bonus Faccata  {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Bonus Facciata</h5>
+                        </div>
+                        <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'home'%}"><i class="feather icon-home"></i></a></li>
+                                    <li class="breadcrumb-item active" aria-current="page" ><a class="breadcrumb-item active" href="{% url 'data-iniziali' fff=fff %}">DATI INIZIALI</a></li>
+                                    {% if fff %}
+                                    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'tables' fff=fff %}">SINTESI CONTRATTO CLIENTE</a></li>
+                                    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'choose-profession' fff=fff %}">INCARICHI PROFESSIONALI</a></li>
+                                    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'beneficiary' fff=fff %}">DETTAGLIO DEI BENEFICIARI</a></li>
+                                    {%endif%}
+
+                                </ul>
+                            </nav>
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item " aria-current="page"><a  href="{% url 'edit-form' table='Condominium' id=dform.condominium_id %}">DATI DEL CONDOMINIO</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a class="breadcrumb-item active" href="#">DATI AMMINISTRATORE PERSONA GIURIDICA</a></li>
+                                </ul>
+                            </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <!-- [ form-element ] start -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+
+                        <h4>DATI AMMINISTRATORE PERSONA GIURIDICA SE NOMINATO</h4>
+                    </div>
+                    <div class="card-body">
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+
+                                    <hr>
+                                    <div class="row">
+                                      <div class="form-group col-md-10 col-lg-10">
+                                            <label for="company_name">DENOMINAZIONE SOCIETA'</label>
+                                            {{forms.company_name}}
+                                            <small>indicazione riportata enlla visura camerale</small>
+                                        </div>  
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4 col-lg-4">
+                                            <label for="province">PROVINCIA/E ISCRIZIONE REGISTRO IMPRESE</label>
+                                            {{forms.province}}
+                                            <small>riportare la provincia o le provincie nel caso in cui il Registro Imprese comprenda più province</small>
+                                        </div>
+                                        <div class="form-group col-md-4 col-lg-4">
+                                            <label for="vat_number">N° ISCRIZIONE REGISTRO IMPRESE - PARTITA IVA - C.F.</label>
+                                            {{forms.vat_number}}
+                                        </div>
+
+
+                                    </div>
+                        
+                                    <div class="row">
+                                        <div class="form-group col-md-4 col-lg-10">
+                                            <label for="street">VIA E NUMERO SEDE LEGALE</label>
+                                            {{forms.street}}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+
+
+                                        <div class="form-group col-md-4 col-lg-4">
+                                            <label for="cap">CAP SEDE LEGALE</label>
+                                            {{forms.cap}}
+                                        </div>
+                                          <div class="form-group col-md-1 col-lg-1">
+                                            </div>
+                                        <div class="form-group col-md-4 col-lg-4">
+                                            <label for="municipal_reg_office">COMUNE SEDE LEGALE</label>
+                                            {{forms.municipal_reg_office}}
+                                        </div>
+
+                                        <div class="form-group col-md-4 col-lg-4">
+                                            <label for="province_reg_office">PROVINCIA SEDE LEGALE</label>
+                                            {{forms.province_reg_office}}
+                                        </div>
+                                    </div>
+                                    <h5 class="mt-5">LEGALE RAPPRESENTATE</h5>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="form-group col-md-2 col-lg-2">
+                                            <label for="legal_title_rep">TITOLO </label>
+                                            {{forms.legal_title_rep}}
+                                            <small>SIG./SIG.RA/GEOM./RAG./ING./ARCH/ALTRO</small>
+                                        </div>
+
+                                        <div class="form-group col-md-8 col-lg-8">
+                                            <label for="leg_rep_name">COGNOME E NOME LEGALE RAPPRESENTANTE</label>
+                                            {{forms.leg_rep_name}}
+                                        </div>
+
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-md-4 col-lg-4">
+                                            <label for="leg_rep_tax_code">CODICE FISCALE LEGALE RAPPRESENTATE</label>
+                                            {{forms.leg_rep_tax_code}}
+                                        </div>
+                                        <div class="form-group col-md-4 col-lg-4">
+                                            <label for="leg_rep_dob">DATA DI NASCITA LEGALE RAPPRESENTANTE</label>
+                                            {{forms.leg_rep_dob}}
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+
+                                        <div class="form-group col-md-4 col-lg-4">
+                                            <label for="municipal_of_birth_of_leg">COMUNE DI NASCITA DEL LEGALE RAPPRESENTANTE</label>
+                                            {{forms.municipal_of_birth_of_leg}}
+                                        </div>
+
+                                        <div class="form-group col-md-4 col-lg-4">
+                                            <label for="province_of_birth_of_leg">PROVINCIA DI NASCITA DEL LEGALE RAPPRESENTANTE</label>
+                                            {{forms.province_of_birth_of_leg}}
+                                        </div>
+                                    </div>
+                                     
+                                    <div class="row">
+
+                                        <div class="form-group col-md-10 col-lg-10">
+                                            <label for="legal_street">VIA E NUMERO RESIDENZA LEGALE RAPPRESENTANTE</label>
+                                            {{forms.legal_street}}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4 col-lg-3">
+                                            <label for="cap_legal">CAP RESIDENZA LEGALE RAPPRESENTANTE <br></label>
+                                            {{forms.cap_legal}}
+                                        </div>
+                                        <div class="form-group form-group col-md-4 col-lg-3">
+                                            <label for="municipal_of_leg_residence">COMUNE DI RESIDENZA LEGALE RAPPRESENTANTE</label>
+                                            {{forms.municipal_of_leg_residence}}
+                                        </div>
+
+                                        <div class="form-group form-group col-md-4 col-lg-3">
+                                            <label for="province_of_leg_residence">PROVINCIA DI RESIDENZA LEGALE RAPPRESENTANTE</label>
+                                            {{forms.province_of_leg_residence}}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                    </div>
+                                    <button type="submit" class="btn  btn-primary">Invia</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block javascripts %}
+{% endblock javascripts %}

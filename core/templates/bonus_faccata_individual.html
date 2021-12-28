@@ -1,0 +1,159 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Bonus Faccata  {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Bonus Facciata</h5>
+                        </div>
+                        <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'home'%}"><i class="feather icon-home"></i></a></li>
+                                    <li class="breadcrumb-item active" aria-current="page" ><a class="breadcrumb-item active" href="">DATI INIZIALI</a></li>
+                                    {% if fff.id %}
+                                    <li class="breadcrumb-item"><a href="{% url 'tables' fff=fff %}">SINTESI CONTRATTO CLIENTE</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'choose-profession' fff=fff %}">INCARICHI PROFESSIONALI</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'beneficiary' fff=fff %}">DETTAGLIO DEI BENEFICIARI</a></li>
+                                    {%endif%}
+
+                                </ul>
+                            </nav>
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item " aria-current="page"><a  href="{% url 'edit-form' table='Condominium' id=dform.condominium_id %}">DATI DEL CONDOMINIO</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a class="breadcrumb-item active" href="#">DATI AMMINISTRATORE PERSONA FISICA</a></li>
+                                </ul>
+                            </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <!-- [ form-element ] start -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+
+                        <h4>DATI AMMINISTRATORE PERSONA FISICA SE NOMINATO</h4>
+                    </div>
+                    <div class="card-body">
+                        <br>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    {% if errors %}
+                                            <div class="alert alert-danger" role="alert">
+                                                {{errors}}
+                                            </div>
+                                         {% endif %}
+                                        <div class="row">
+                                            <div class="form-group col-md-2 col-lg-2">
+                                                <label for="title">TITOLO AMMINISTRATORE</label>
+                                                {{forms.title}}
+                                                <small>SIG./SIG.RA/GEOM./RAG./ING./ARCH/ALTRO</small>
+                                            </div>
+                                            <div class="form-group col-md-8 col-lg-8">
+                                                <label for="fiscal_code">COGNOME e NOME</label>
+                                                {{forms.name}}
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-5 col-lg-5">
+                                                <label for="fiscal_code">CODICE FISCALE</label>
+                                                {{forms.fiscal_code}}
+                                            </div>
+                                            <div class="form-group col-md-5 col-lg-5">
+                                                <label for="vat_number">PARTITA IVA</label>
+                                                {{forms.vat_number}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-3 col-lg-3">
+                                                <label for="dob">DATA DI NASCITA</label>
+                                                {{forms.dob}}
+                                            </div>
+                                            <div class="form-group col-md-10 col-lg-4">
+                                                <label for="birthplace">LUOGO DI NASCITA</label>
+                                                {{forms.birthplace}}
+                                            </div>
+                                            <div class="form-group col-md-3 col-lg-3">
+                                                <label for="birthplace_county">PROVINCIA DI NASCITA</label>
+                                                {{forms.birthplace_county}}
+                                            </div>
+                                        </div>
+                                        <h5 class="mt-5">ATTIVITA</h5>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="form-group col-md-10 col-lg-10">
+                                                <label for="activity_street">VIA E NUMERO/I SEDE ATTIVITA'</label>
+                                                {{forms.activity_street}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-4 col-lg-3">
+                                                <label for="activity_location_cap">CAP SEDE ATTIVITA</label>
+                                                {{forms.activity_location_cap}}
+                                            </div>
+                                            <div class="form-group col-md-4 col-lg-3">
+                                                <label for="activity_municipality">COMUNE SEDE ATTIVITA</label>
+                                                {{forms.activity_municipality}}
+                                            </div>
+                                            <div class="form-group col-md-4 col-lg-3">
+                                                <label for="activity_province">PROVINCIA SEDE ATTIVITA</label>
+                                                {{forms.activity_province}}
+                                            </div>
+                                        </div>
+                                        <h5 class="mt-5">RESIDENZA</h5>
+                                        <hr>
+                                        <div class="row">
+
+                                            <div class="form-group col-md-10 col-lg-10">
+                                                <label for="residence_street">VIA E NUMERO RESIDENZA</label>
+                                                {{forms.residence_street}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-4 col-lg-3">
+                                                <label for="residence_cap">CAP RESIDENZA</label>
+                                                {{forms.residence_cap}}
+                                            </div>
+                                            <div class="form-group col-md-10 col-lg-4">
+                                                <label for="residence_city">LUOGO DI RESIDENZA</label>
+                                                {{forms.residence_city}}
+                                            </div>
+                                            <div class="form-group col-md-4col-lg-3">
+                                                <label for="residence_province">PROVINCIA DI RESIDENZA</label>
+                                                {{forms.residence_province}}
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn  btn-primary">Invia</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ {% endblock content %}
+
+                            <!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}
